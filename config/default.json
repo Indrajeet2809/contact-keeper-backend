@@ -1,4 +1,5 @@
 {
-	"mongoURI": "mongodb+srv://brad123:brad123@testcluster-hvjuz.mongodb.net/test?retryWrites=true",
+	"mongoURI": "mongodb+srv://Raj:Raj%401234@contactkeeperapicluster.stwsvkh.mongodb.net/contactkeeper?retryWrites=true&w=majority&appName=ContactKeeperApiCluster" ,
+
 	"jwtSecret": "secret"
 }
