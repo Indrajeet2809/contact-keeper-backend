@@ -3,10 +3,10 @@ const connectDB = require('./config/db');
 
 const app = express();
 
-// Connect Database
+// Connection of  Database
 connectDB();
 
-// Init Middleware
+// Initialization Of  Middleware
 app.use(express.json({ extended: false }));
 
 // Define Routes
