@@ -17,7 +17,7 @@ router.get('/', auth, async (req, res) => {
 		res.json(contacts);
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).send('Server Error');
+		res.status(500).send('Server Side Error');
 	}
 });
 
@@ -29,7 +29,7 @@ router.post(
 	[
 		auth,
 		[
-			check('name', 'Name is required')
+			check('name', 'Name is Required')
 				.not()
 				.isEmpty(),
 			check('type', 'Type must be personal or professional').isIn([
@@ -60,7 +60,7 @@ router.post(
 			res.json(contact);
 		} catch (err) {
 			console.error(err.message);
-			res.status(500).send('Server Error');
+			res.status(500).send('Server Side Error');
 		}
 	}
 );
@@ -85,11 +85,11 @@ router.put('/:id', auth, async (req, res) => {
 	try {
 		let contact = await Contact.findById(req.params.id);
 
-		if (!contact) return res.status(404).json({ msg: 'Contact not found' });
+		if (!contact) return res.status(404).json({ msg: 'Contact not Found' });
 
 		// Make sure user owns contact
 		if (contact.user.toString() !== req.user.id)
-			return res.status(401).json({ msg: 'Not authorized' });
+			return res.status(401).json({ msg: 'Not Authorized' });
 
 		contact = await Contact.findByIdAndUpdate(
 			req.params.id,
@@ -115,11 +115,11 @@ router.delete('/:id', auth, async (req, res) => {
 
 		// Make sure user owns contact
 		if (contact.user.toString() !== req.user.id)
-			return res.status(401).json({ msg: 'Not authorized' });
+			return res.status(401).json({ msg: 'Not Authorized' });
 
 		await Contact.findByIdAndRemove(req.params.id);
 
-		res.json({ msg: 'Contact removed' });
+		res.json({ msg: 'Contact Removed' });
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server error');
